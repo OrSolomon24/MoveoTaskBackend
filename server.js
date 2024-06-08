@@ -11,10 +11,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 const corsOptions = {
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true,
+    origin: '*'
+    // methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    // allowedHeaders: ['Content-Type'],
+    // credentials: true,
 };
 
 app.use(cors(corsOptions));
