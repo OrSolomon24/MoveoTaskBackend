@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+// const socketIo = require('socket.io');
 require('dotenv').config();
 const { connectToDatabase } = require('./data/database');
 const codeBlocksRoutes = require('./routes/codeBlockRoutes');
@@ -9,15 +9,20 @@ const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
-const corsOptions = {
-    origin: '*'
-    // methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    // allowedHeaders: ['Content-Type'],
-    // credentials: true,
-};
+// const io = socketIo(server);
+const io = require('socket.io')(server, {
+    cors: {
+      origin: '*',
+    }
+  });
+// const corsOptions = {
+//     origin: '*'
+//     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     // allowedHeaders: ['Content-Type'],
+//     // credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 io.on('connection', handleSocketConnection);
