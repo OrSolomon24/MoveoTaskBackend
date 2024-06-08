@@ -15,14 +15,14 @@ const io = require('socket.io')(server, {
       origin: '*',
     }
   });
-// const corsOptions = {
-//     origin: '*'
-//     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     // allowedHeaders: ['Content-Type'],
-//     // credentials: true,
-// };
+const corsOptions = {
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 io.on('connection', handleSocketConnection);
